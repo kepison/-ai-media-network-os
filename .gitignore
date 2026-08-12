@@ -1,24 +1,79 @@
-# dependencies
+```
+# Dependencies
 node_modules/
 
-# build output
-frontend/dist/
-backend/dist/
-
-# env / secrets
+# Environment variables
 .env
 .env.local
-*.env
-!*.env.example
+.env.*
 
-# database & data
-data/*.db
-data/*.db-*
-data/logs/
-
-# misc
-.DS_Store
+# Logs
 *.log
-npm-debug.log*
-tmp/
-*.tsbuildinfo
+
+# Build artifacts
+dist/
+build/
+target/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py~
+*.pyc~
+*.pyo~
+*.pyd~
+*.py~
+*.pyc~
+*.pyo~
+*.pyd~
+
+# Virtual environments
+venv/
+.venv/
+env/
+.ENV/
+
+# Testing
+.coverage
+coverage/
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Compressed files
+*.zip
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.Z
+*.lz
+*.lzo
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.zst
+```

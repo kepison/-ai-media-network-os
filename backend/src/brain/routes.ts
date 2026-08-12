@@ -684,4 +684,42 @@ export async function registerBrainRoutes(app: FastifyInstance) {
     };
     return { counts };
   });
+
+  // ---------- Models management ----------
+  app.get("/api/models", async () => {
+    const models = db.select().from(s.models).all();
+    const providers = db.select().from(s.model_providers).all();
+    const now = Math.floor(Date.now() / 1000);
+    return models.map((m) => {
+      const provider = providers.find((p) => p.id === m.provider_id);
+      return {
+        ...m,
+        provider_name: provider?.name,
+        provider_kind: provider?.kind,
+        cooldown_left_s: (m.cooldown_until ?? 0) > now ? (m.cooldown_until ?? 0) - now : 0,
+      };
+    }).sort((a, b) => (a.priority ?? 100) - (b.priority ?? 100));
+  });
+
+  app.patch("/api/models/:id", async (req, reply) => {
+    const { id } = req.params as { id: string };
+    const body = req.body as any;
+    const model = db.select().from(s.models).where(eq(s.models.id, id)).all()[0];
+    if (!model) return reply.status(404).send({ error: "model not found" });
+    
+    const updates: Record<string, any> = {};
+    if (typeof body.enabled === "boolean") updates.enabled = body.enabled;
+    if (typeof body.priority === "number") updates.priority = body.priority;
+    if (typeof body.cooldown_until === "number") updates.cooldown_until = body.cooldown_until;
+    
+    if (Object.keys(updates).length > 0) {
+      db.update(s.models).set(updates).where(eq(s.models.id, id)).run();
+    }
+    return { ok: true, updated: updates };
+  });
+
+  app.get("/api/ai/health", async () => {
+    const { serverHealth } = await import("../ai/gateway.js");
+    return await serverHealth();
+  });
 }

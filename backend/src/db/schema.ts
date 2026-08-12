@@ -447,13 +447,14 @@ export const grid_views = sqliteTable(
 
 export const model_providers = sqliteTable("model_providers", {
   id: text("id").primaryKey(),
-  key: text("key").notNull().unique(), // ollama, openrouter
+  key: text("key").notNull().unique(), // ollama, gemini, openrouter, huggingface, groq, together, deepseek, lmstudio
   name: text("name").notNull(),
   kind: text("kind").notNull().default("remote"), // local, remote
   base_url: text("base_url"),
   env_key: text("env_key"),
   enabled: integer("enabled", { mode: "boolean" }).default(true),
   config: text("config", { mode: "json" }).$type<Record<string, unknown>>(),
+  notes: text("notes"), // описание преимуществ, лимитов
   created_at: integer("created_at").notNull().default(now),
 });
 
