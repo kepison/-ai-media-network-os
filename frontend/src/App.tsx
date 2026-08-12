@@ -14,6 +14,7 @@ import Models from "./pages/Models.tsx";
 import Settings from "./pages/Settings.tsx";
 import Research from "./pages/Research.tsx";
 import Brain from "./pages/Brain.tsx";
+import AIHub from "./pages/AIHub.tsx";
 import { api } from "./lib/api.ts";
 
 type PageKey =
@@ -31,7 +32,8 @@ type PageKey =
   | "models"
   | "settings"
   | "import"
-  | "brain";
+  | "brain"
+  | "aihub";
 
 const PAGES: Record<PageKey, { title: string; icon: string; comp: ComponentType<{ nicheId: string; setNicheId: (id: string) => void }> }> = {
   dashboard: { title: "Command Center", icon: "◉", comp: Dashboard },
@@ -49,6 +51,7 @@ const PAGES: Record<PageKey, { title: string; icon: string; comp: ComponentType<
   settings: { title: "Settings", icon: "⚙", comp: Settings },
   import: { title: "Import", icon: "↧", comp: Import },
   brain: { title: "AI Brain", icon: "🧠", comp: Brain },
+  aihub: { title: "AI Hub", icon: "⚡", comp: AIHub },
 };
 
 export default function App() {
