@@ -1,0 +1,22 @@
+{
+  "name": "ai-media-os",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI Media Network OS — локальная AI-платформа для управления сеткой контентных каналов",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "build": "npm run build -w frontend",
+    "start": "./scripts/start.sh",
+    "stop": "./scripts/stop.sh",
+    "doctor": "./scripts/doctor.sh",
+    "test": "npm run test -w backend"
+  },
+  "allowScripts": {
+    "better-sqlite3@13.0.3": true,
+    "esbuild@0.28.2": true
+  }
+}

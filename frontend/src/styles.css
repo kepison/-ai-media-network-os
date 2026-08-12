@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+body {
+  background: #0b0e14;
+  color: #dbe2ea;
+}
+.scroll-slim::-webkit-scrollbar { width: 6px; height: 6px; }
+.scroll-slim::-webkit-scrollbar-thumb { background: #2a3140; border-radius: 3px; }
+.scroll-slim::-webkit-scrollbar-track { background: transparent; }
